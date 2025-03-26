@@ -33,11 +33,18 @@ jobs:
 
       - name: Run Backend Tests
         run: |
-          if [ -d "api" ]; then cd api && npm test; fi
+          if [ -d "api" ] && [ -f "api/package.json" ]; then 
+            cd api 
+            if grep -q '"test":' package.json; then npm test; else echo "No tests found. Skipping..."; fi
+          fi
 
       - name: Run Frontend Tests
         run: |
-          if [ -d "client" ]; then cd client && npm test; fi
+          if [ -d "client" ] && [ -f "client/package.json" ]; then 
+            cd client 
+            if grep -q '"test":' package.json; then npm test; else echo "No tests found. Skipping..."; fi
+          fi
+
 
   merge-check:
     name: Merge Approval Check
