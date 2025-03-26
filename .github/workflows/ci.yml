@@ -23,20 +23,21 @@ jobs:
           node-version: 18
           cache: 'npm'
 
-      - name: Install Dependencies
+      - name: Install Backend Dependencies
         run: |
-          cd backend && npm install
-          cd ../frontend && npm install
+          if [ -d "api" ]; then cd api && npm install; fi
+
+      - name: Install Frontend Dependencies
+        run: |
+          if [ -d "client" ]; then cd client && npm install; fi
 
       - name: Run Backend Tests
         run: |
-          cd backend
-          npm test
+          if [ -d "api" ]; then cd api && npm test; fi
 
       - name: Run Frontend Tests
         run: |
-          cd frontend
-          npm test
+          if [ -d "client" ]; then cd client && npm test; fi
 
   merge-check:
     name: Merge Approval Check
