@@ -8,6 +8,10 @@ on:
     branches:
       - main
 
+permissions:
+  contents: write
+  pull-requests: write
+
 jobs:
   auto-merge:
     name: Allow All Commits to Merge
@@ -17,5 +21,8 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v3
 
-      - name: Auto-Merge Confirmation
-        run: echo "✅ Auto-Merge: No checks required, merging directly!"
+      - name: Enable Auto-Merge
+        uses: peter-evans/enable-pull-request-automerge@v2
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          merge-method: squash
