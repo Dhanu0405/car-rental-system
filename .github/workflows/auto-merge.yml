@@ -1,9 +1,6 @@
 name: Auto Merge for MERN Vehicle Rental System
 
 on:
-  push:
-    branches:
-      - main
   pull_request:
     branches:
       - main
@@ -14,7 +11,7 @@ permissions:
 
 jobs:
   auto-merge:
-    name: Allow All Commits to Merge
+    name: Auto Merge Pull Requests
     runs-on: ubuntu-latest
 
     steps:
@@ -25,4 +22,5 @@ jobs:
         uses: peter-evans/enable-pull-request-automerge@v2
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
+          pull-request-number: ${{ github.event.pull_request.number }}
           merge-method: squash
