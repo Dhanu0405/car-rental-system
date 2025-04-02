@@ -1,0 +1,21 @@
+name: Auto Merge for MERN Vehicle Rental System
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  auto-merge:
+    name: Allow All Commits to Merge
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: Auto-Merge Confirmation
+        run: echo "✅ Auto-Merge: No checks required, merging directly!"
