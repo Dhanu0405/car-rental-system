@@ -17,8 +17,8 @@ export default function Accountbar(){
         {name: 'Home', href: "/account"},
         {name: 'About', href: "/about"},
         {name: 'Models', href: "/model"},
-        {name: 'Testimaonials', href: "/testimonials"},
-        {name: 'Team', href: "/team"},
+        {name: 'Testimonials', href: "/testimonials"},
+        // {name: 'Team', href: "/team"},
         {name: 'Contact', href: "/contact"},
         {name: 'bookings', href: "/account/bookings"},
     ]

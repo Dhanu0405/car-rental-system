@@ -5,7 +5,7 @@ import Cards from '../Components/Bodycomponents/cards';
 import Reservationbox from '../Components/Bodycomponents/reservation';
 import Banner from '../Components/Bodycomponents/Banner';
 import Services from '../Components/Bodycomponents/services';
-import Downloads from '../Components/Bodycomponents/Downloads';
+
 import Footer from '../Components/Bodycomponents/Footer';
 import Reviews from '../Components/Bodycomponents/Reviews';
 import Navbar from '../Components/Navbarcomponents/Navbar';
@@ -83,7 +83,6 @@ export default function Home(){
             <Banner/>
             <Services/>
             <Reviews/>
-            <Downloads/>
             <Footer/>
         </div>
             <Bookcar isDivVisible={isDivVisible} setDivVisible={setDivVisible} carType={carType} pickPlace={pickPlace}

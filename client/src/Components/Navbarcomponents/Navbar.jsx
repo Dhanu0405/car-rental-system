@@ -20,7 +20,7 @@ export default function Navbar(){
         {name: 'About', href: "/about"},
         {name: 'Models', href: "/model"},
         {name: 'Testimaonials', href: "/testimonials"},
-        {name: 'Team', href: "/team"},
+        // {name: 'Team', href: "/team"},
         {name: 'Contact', href: "/contact"},
         {name: 'Login', href: "/login"},
         {name: 'Register', href: "/register"}
@@ -35,18 +35,18 @@ export default function Navbar(){
     return(
         <>
             <nav className="relative container mx-auto p-6 bg-transparent">
-                <div className="flex items-center justify-between space-x-20">
-                    <div className="pt-2">
+                <div className="flex items-center justify-between">
+                    <div className="pt-2 w-1/4">
                         <img style={{cursor:"pointer"}} className="w-40 h-12" src={logo} alt="c"/>
                     </div>
-                    <div className="hidden md:flex space-x-6">
+                    <div className="hidden md:flex justify-center space-x-8 w-2/4">
                         {menus.map((menu,index)=>(
                             index != menus.length - 1 &&
                             index != menus.length - 2 &&
                             <a className="font-bold text-lg font-sans hover:text-orange" key={index} href={menu.href}>{menu.name}</a>
                         ))}
                     </div>
-                     <div className="hidden md:flex space-x-6">
+                     <div className="hidden md:flex justify-end space-x-6 w-1/4">
                             <Link to={'/login'} className="font-bold text-lg font-sans py-3 px-4 hover:text-orange">Login</Link>
                             <Link to={'/register'} className="font-bold text-lg font-sans py-3 px-4 rounded text-white bg-orange opacity-90 hover:opacity-100 hover:shadow-md">Register</Link>
                     </div>
