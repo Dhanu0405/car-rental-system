@@ -1,26 +1,35 @@
-name: Auto Merge for MERN Vehicle Rental System
+name: Code Validation
 
 on:
-  pull_request:
+  push:
     branches:
       - main
-
-permissions:
-  contents: write
-  pull-requests: write
+      - dev
 
 jobs:
-  auto-merge:
-    name: Auto Merge Pull Requests
+  validate:
+    name: Validate Code
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
-      - name: Enable Auto-Merge
-        uses: peter-evans/enable-pull-request-automerge@v2
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          pull-request-number: ${{ github.event.pull_request.number }}
-          merge-method: squash
+          node-version: 18
+
+      - name: Install Dependencies
+        run: npm install
+        working-directory: ./client
+
+      - name: Run ESLint for Code Validation
+        run: |
+          echo "Running ESLint..."
+          npx eslint . || true  # Prevent build fail on lint errors (optional)
+        working-directory: ./client
+
+      - name: Run Tests (Placeholder)
+        run: echo "No tests yet"
+        working-directory: ./client
