@@ -1,0 +1,44 @@
+@startuml Car Rental System Sequence Diagram
+
+actor User
+participant "Frontend (React)" as Frontend
+participant "API Server" as API
+database "MongoDB" as DB
+
+== User Authentication Flow ==
+User -> Frontend: Access Login Page
+Frontend -> API: POST /login
+API -> DB: Query User Credentials
+DB --> API: Return User Data
+API --> Frontend: Return JWT Token
+Frontend -> Frontend: Store Token in Context
+
+== Car Browsing Flow ==
+User -> Frontend: Browse Cars
+Frontend -> Frontend: Display Car List
+User -> Frontend: Click Car Details
+Frontend -> Frontend: Navigate to Details Page
+Frontend -> Frontend: Display Car Specifications
+
+== Car Reservation Flow ==
+User -> Frontend: Click Reserve Now
+alt User Not Logged In
+    Frontend -> Frontend: Redirect to Login
+else User Logged In
+    Frontend -> Frontend: Navigate to Reservation Page
+    User -> Frontend: Fill Reservation Details
+    Frontend -> API: POST /reservation
+    API -> DB: Create Reservation Record
+    DB --> API: Confirm Reservation
+    API --> Frontend: Return Reservation Details
+    Frontend -> Frontend: Display Confirmation
+end
+
+== Booking History Flow ==
+User -> Frontend: Access Bookings
+Frontend -> API: GET /account/bookings
+API -> DB: Query User Bookings
+DB --> API: Return Booking Data
+API --> Frontend: Display Booking History
+
+@enduml

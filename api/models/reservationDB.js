@@ -1,6 +1,5 @@
 const mongoose = require('mongoose');
 
-
 const reservationSchema = new mongoose.Schema({
     owner: {type:mongoose.Schema.Types.ObjectId, ref: 'Client'},
     firstname: String,
@@ -19,8 +18,6 @@ const reservationSchema = new mongoose.Schema({
     pickTime: String,
     dropTime : String
 })
-
-
 
 const Reservation = mongoose.model('Reservation',reservationSchema);
 

@@ -1,55 +1,38 @@
-import React from 'react';
-import audi  from  "../images/realaudi.png";
-import benz  from  "../images/realbenz.png";
-import bmw from  "../images/realbmw.png";
-import golf from  "../images/realgolf.png";
-import passat from  "../images/realpassat.png";
-import toyota from  "../images/realtoyota.png";
+import React, { useState, useEffect } from 'react';
 import CarCard from './Reactcard';
 
+export default function Carmodel() {
+    const [cars, setCars] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
 
+    useEffect(() => {
+        const fetchCars = async () => {
+            try {
+                const response = await fetch('http://localhost:4000/api/cars');
+                if (!response.ok) {
+                    throw new Error('Failed to fetch cars');
+                }
+                const data = await response.json();
+                setCars(data);
+            } catch (err) {
+                setError(err.message);
+            } finally {
+                setLoading(false);
+            }
+        };
 
-export default function Carmodel(){
+        fetchCars();
+    }, []);
 
-    const cars = [
-        {
-            name: "Audi A1",
-            model: "Audi",
-            rent: "$ 45",
-            image: audi
-        },
-        {
-            name: "Golf 6",
-            model: "VW",
-            rent: "$ 37",
-            image: golf
-        },
-        {
-            name: "Toyota",
-            model: "Camry",
-            rent: "$ 30",
-            image: toyota
-        },
-        {
-            name: "BMW 320",
-            model: "ModernLine",
-            rent: "$ 35",
-            image: bmw
-        },
-        {
-            name: "Mercedes",
-            model: "Benz GLK",
-            rent: "$ 50",
-            image: benz
-        },
-        {
-            name: "NW Passat",
-            model: "CC",
-            rent: "$ 25",
-            image: passat
-        }
-    ]
-   
+    if (loading) {
+        return <div className="text-center py-10">Loading cars...</div>;
+    }
+
+    if (error) {
+        return <div className="text-center py-10 text-red-500">{error}</div>;
+    }
+
 
     return(
         <>
