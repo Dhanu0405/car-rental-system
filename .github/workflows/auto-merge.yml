@@ -5,6 +5,10 @@ on:
     branches:
       - main
       - dev
+  pull_request:
+    branches:
+      - main
+      - dev
 
 jobs:
   validate:
@@ -27,7 +31,7 @@ jobs:
       - name: Run ESLint for Code Validation
         run: |
           echo "Running ESLint..."
-          npx eslint . || true  # Prevent build fail on lint errors (optional)
+          npx eslint . || true
         working-directory: ./client
 
       - name: Run Tests (Placeholder)
