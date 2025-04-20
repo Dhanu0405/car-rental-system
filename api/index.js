@@ -28,12 +28,8 @@ app.use(cookieParser());
 
 require("./db/connect");
 
-const carDetailsRouter = require('./routes/carDetails');
 const Client = require('./models/clientDB');
 const Reservation = require('./models/reservationDB');
-
-// Car Details routes
-app.use('/api/cars', carDetailsRouter);
 
 
 
