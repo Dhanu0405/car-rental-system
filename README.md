@@ -62,5 +62,4 @@ Leveraging React's component-based architecture for the frontend and Express.js'
 ### 4. Quality Assurance
 - Comprehensive testing of all features
 - Security audit and vulnerability assessment
-- Performance optimization and code refactoring
 - User feedback integration and bug fixes
