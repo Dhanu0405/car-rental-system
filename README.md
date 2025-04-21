@@ -20,7 +20,6 @@ Leveraging React's component-based architecture for the frontend and Express.js'
 ### Authentication & Security
 - **JWT (JSON Web Tokens)** - Secure authentication mechanism
 - **Bcrypt** - Password hashing
-- **Passport.js** - Authentication middleware
 
 ### Development & Deployment
 - **Git** - Version control
